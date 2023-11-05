@@ -5,6 +5,7 @@ import com.example.Chapter6.repository.MerchantRepository;
 import com.example.Chapter6.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -17,22 +18,18 @@ public class MerchantServiceImpl implements MerchantService {
         this.merchantRepository = merchantRepository;
     }
 
-    @Autowired
     public List<Merchant> getAllMerchants() {
         return merchantRepository.findAll();
     }
 
-    @Autowired
     public Merchant addMerchant(Merchant merchant) {
         return merchantRepository.save(merchant);
     }
 
-    @Autowired
     public Optional<Merchant> getMerchantById(Long merchantId) {
         return merchantRepository.findById(merchantId);
     }
 
-    @Autowired
     public Merchant updateMerchant(Merchant merchant) {
         Optional<Merchant> existingMerchantOptional = merchantRepository.findById(merchant.getMerchantCode());
 
@@ -47,7 +44,6 @@ public class MerchantServiceImpl implements MerchantService {
         }
     }
 
-    @Autowired
     public List<Merchant> getOpenMerchants() {
         return merchantRepository.findByOpen(true);
     }
