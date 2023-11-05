@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Merchant {
+public class Merchant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long merchantCode;
@@ -20,6 +21,4 @@ public class Merchant {
     private String merchantName;
     private String merchantLocation;
     private boolean open;
-
-
 }

@@ -20,11 +20,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
-        return null;
+        // Cari pengguna berdasarkan ID
+        User existingUser = userRepository.findById(user.getUserId()).get();
+
+        if (existingUser != null) {
+            // Perbarui informasi pengguna
+            existingUser.setUsername(user.getUsername());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setPassword(user.getPassword());
+
+            // Simpan perubahan ke dalam repositori
+            return userRepository.save(existingUser);
+        } else {
+            // Pengguna yang ingin diperbarui tidak ditemukan
+            // Anda bisa mengembalikan nilai null atau melakukan yang lain sesuai kebutuhan
+            return null;
+        }
+
     }
 
     @Override
     public void deleteUser(User user) {
-
+        userRepository.deleteById(user.getUserId());
     }
 }
